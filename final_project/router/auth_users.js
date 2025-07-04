@@ -45,7 +45,7 @@ regd_users.post("/login", (req, res) => {
 // Add or modify a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
   const isbn = req.params.isbn;
-  const review = req.query.review;
+  const review = req.body.review || req.query.review;
   const username = req.session.authorization && req.session.authorization.username;
   if (!username) {
     return res.status(401).json({ message: "User not logged in" });
